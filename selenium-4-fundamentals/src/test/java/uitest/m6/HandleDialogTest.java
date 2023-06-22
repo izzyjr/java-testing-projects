@@ -6,15 +6,18 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import static helper.Pages.HOME;
 
 public class HandleDialogTest {
 
+    WebDriver driver;
+
     @Test
     void dismissAlertTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        driver = DriverFactory.newDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -31,13 +34,11 @@ public class HandleDialogTest {
 
         Assert.assertEquals(first.getAttribute("value"), "John");
         Assert.assertEquals(last.getAttribute("value"), "Smith");
-
-        driver.quit();
     }
 
     @Test
     void dismissAlertTest_2() {
-        WebDriver driver = DriverFactory.newDriver();
+        driver = DriverFactory.newDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -54,7 +55,10 @@ public class HandleDialogTest {
 
         Assert.assertEquals(first.getAttribute("value"), "");
         Assert.assertEquals(last.getAttribute("value"), "");
+    }
 
+    @AfterMethod
+    void cleanUp() {
         driver.quit();
     }
 }
