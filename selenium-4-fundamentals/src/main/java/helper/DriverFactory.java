@@ -10,6 +10,7 @@ public class DriverFactory {
     public static WebDriver newDriver() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+        // implicit wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         return driver;
     }
