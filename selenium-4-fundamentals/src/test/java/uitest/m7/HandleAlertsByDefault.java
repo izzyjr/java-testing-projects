@@ -25,5 +25,4 @@ public class HandleAlertsByDefault {
         DemoHelper.pause();
         driver.quit();
     }
-
 }
