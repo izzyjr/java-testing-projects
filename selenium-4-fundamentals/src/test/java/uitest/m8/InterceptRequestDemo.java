@@ -8,24 +8,23 @@ import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v85.network.Network;
 import org.openqa.selenium.devtools.v85.network.model.Request;
 import org.openqa.selenium.devtools.v85.network.model.Response;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+import static factory.DevToolsFactory.newChromeDevTool;
 
 public class InterceptRequestDemo {
     WebDriver driver;
     DevTools devTools;
 
-    @Test
+    @Test(enabled = false)
     public void howToGetDevToolsObject() {
+        // demo
         ChromeDriver chromeDriver = new ChromeDriver();
         DevTools tools = chromeDriver.getDevTools();
 
@@ -36,7 +35,7 @@ public class InterceptRequestDemo {
     @Test
     public void captureRequestTraffic() {
         driver = new ChromeDriver();
-        devTools = ((ChromeDriver) driver).getDevTools();
+        devTools = newChromeDevTool(driver);
         devTools.createSession();
 
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
@@ -52,7 +51,7 @@ public class InterceptRequestDemo {
     @Test
     public void captureResponseTraffic() {
         driver = new ChromeDriver();
-        devTools = ((ChromeDriver) driver).getDevTools();
+        devTools = newChromeDevTool(driver);
         devTools.createSession();
 
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
@@ -70,20 +69,12 @@ public class InterceptRequestDemo {
     @Test
     public void manipulateTraffic() {
         driver = new ChromeDriver();
-        devTools = getDevTool(driver);
-        devTools.send(Network.setBlockedURLs(List.of("*.js")));
+        devTools = newChromeDevTool(driver);
+        devTools.send(Network.setBlockedURLs(List.of("*/footer.js")));
 
         driver.get("http://127.0.0.1:8000/index.html");
-        WebElement location = new WebDriverWait(driver, Duration.ofSeconds(2))
-                .until(visibilityOfElementLocated(By.id("location")));
-        Assert.assertTrue(location.getText().contains("You are visiting us from "));
-    }
-
-    private static DevTools getDevTool(WebDriver driver) {
-        DevTools devTools = ((ChromeDriver) driver).getDevTools();
-        devTools.createSession();
-        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-        return devTools;
+        WebElement location = driver.findElement(By.id("location"));
+        Assert.assertFalse(location.getText().contains("You are visiting us from "));
     }
 
     @AfterMethod
