@@ -7,13 +7,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import java.util.logging.Level;
-
+import static factory.LogCaptureFactory.newLogCapture;
 import static helper.Pages.HOME;
 
 public class LogCaptureDemo {
@@ -23,11 +21,7 @@ public class LogCaptureDemo {
     @Test
     public void logCaptureDemo() {
 
-        LoggingPreferences logs = new LoggingPreferences();
-        logs.enable(LogType.BROWSER, Level.ALL);
-
-        ChromeOptions options = new ChromeOptions();
-        options.setCapability(ChromeOptions.LOGGING_PREFS, logs);
+        ChromeOptions options = newLogCapture();
         driver = new ChromeDriver(options);
         driver.get(HOME);
         driver.findElement(By.id("register")).click();
