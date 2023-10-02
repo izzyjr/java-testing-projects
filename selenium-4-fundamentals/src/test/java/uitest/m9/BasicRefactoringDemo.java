@@ -1,13 +1,19 @@
 package uitest.m9;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import wait.WaitingUtils;
 
 import java.time.Duration;
 
-import static factory.DriverFactory.*;
+import static factory.DriverFactory.newChromeDriver;
+import static factory.DriverFactory.newEdgeDriver;
+import static factory.DriverFactory.newFirefoxDriver;
+import static helper.Pages.LOANS;
 
 public class BasicRefactoringDemo {
 
@@ -31,5 +37,16 @@ public class BasicRefactoringDemo {
         WebDriver edgeDriver = newEdgeDriver();
 
         WebDriver firefoxDriver = newFirefoxDriver();
+    }
+
+    @Test
+    public void refactoredTestDemo() {
+
+        var driver = newChromeDriver();
+        driver.get(LOANS);
+        driver.findElement(By.id("borrow")).sendKeys("500");
+
+        var message = WaitingUtils.waitUntilVisible(driver, By.id("result"), 6);
+        Assert.assertEquals(message.getText(), "You will pays us back 1000");
     }
 }

@@ -8,11 +8,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class WaitingUtils {
 
     public static WebElement waitUntilClickable(WebDriver driver, By locator, long seconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(elementToBeClickable(locator));
+    }
+
+    public static WebElement waitUntilVisible(WebDriver driver, By locator, long seconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(visibilityOfElementLocated(locator));
     }
 
     /**
