@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 import static helper.Pages.LOANS;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static wait.WaitingUtils.waitUntilClickable;
 
 public class WaitingTest {
 
@@ -67,10 +67,6 @@ public class WaitingTest {
 
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
         Assert.assertTrue(result.isDisplayed());
-    }
-
-    public static WebElement waitUntilClickable(WebDriver driver, By locator, long seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(elementToBeClickable(locator));
     }
 
     @AfterMethod

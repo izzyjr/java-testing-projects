@@ -1,6 +1,6 @@
 package uitest.m7;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +22,7 @@ public class HandleAlertsByDefault {
 
         driver.findElement(By.id("clear")).click();
         driver.findElement(By.id("register")).click();
-        DemoHelper.pause();
+        pause();
         driver.quit();
     }
 }

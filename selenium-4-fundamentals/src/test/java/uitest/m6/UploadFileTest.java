@@ -1,6 +1,6 @@
 package uitest.m6;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +28,7 @@ public class UploadFileTest {
 
         fileInput.sendKeys(fileName);
 
-        DemoHelper.pause();
+        pause();
         driver.quit();
         path.toFile().deleteOnExit();
     }

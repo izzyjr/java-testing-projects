@@ -1,6 +1,6 @@
 package uitest.m4;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +23,7 @@ public class ClickingTest {
 
         checkbox.click();
         registerBtn.click();
-        DemoHelper.pause();
+        pause();
 
         driver.quit();
     }
@@ -38,9 +38,9 @@ public class ClickingTest {
 
         actions.doubleClick(checkbox).perform();
 
-        DemoHelper.pause();
+        pause();
         actions.contextClick();
-        DemoHelper.pause();
+        pause();
 
         driver.quit();
     }

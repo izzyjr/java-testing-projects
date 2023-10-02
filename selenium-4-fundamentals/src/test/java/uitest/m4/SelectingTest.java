@@ -1,6 +1,6 @@
 package uitest.m4;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,9 +24,9 @@ public class SelectingTest {
         WebElement period = driver.findElement(By.id("period"));
         Select select = new Select(period);
         select.selectByValue("6 months");
-        DemoHelper.pause();
+        pause();
         select.selectByVisibleText("1 Year");
-        DemoHelper.pause();
+        pause();
         select.selectByIndex(2);
 
         WebElement result = driver.findElement(By.id("result"));

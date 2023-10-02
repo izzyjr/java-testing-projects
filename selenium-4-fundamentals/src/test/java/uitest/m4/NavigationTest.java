@@ -1,6 +1,6 @@
 package uitest.m4;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
@@ -17,13 +17,13 @@ public class NavigationTest {
 
         driver.get(PREFIX + HOME);
 
-        DemoHelper.pause();
+        pause();
         driver.get(PREFIX + SAVINGS);
 
-        DemoHelper.pause();
+        pause();
         driver.navigate().back();
 
-        DemoHelper.pause();
+        pause();
         driver.navigate().forward();
 
         driver.navigate().refresh();

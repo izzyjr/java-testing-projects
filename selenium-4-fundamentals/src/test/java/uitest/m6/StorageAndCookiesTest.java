@@ -1,6 +1,6 @@
 package uitest.m6;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -32,12 +32,12 @@ public class StorageAndCookiesTest {
         SessionStorage storage = webStorage.getSessionStorage();
         storage.keySet()
                         .forEach(key -> System.out.println(key + "= " + storage.getItem(key)));
-        DemoHelper.pause();
+        pause();
         driver.get(SAVINGS);
 
         driver.navigate().back();
 
-        DemoHelper.pause();
+        pause();
 
         var first_1 = driver.findElement(By.id("firstName"));
         var last_1 = driver.findElement(By.id("lastName"));
@@ -47,7 +47,7 @@ public class StorageAndCookiesTest {
         storage.clear();
         driver.navigate().refresh();
 
-        DemoHelper.pause();
+        pause();
         var first_2 = driver.findElement(By.id("firstName"));
         var last_2 = driver.findElement(By.id("lastName"));
         Assert.assertEquals(first_2.getAttribute("value"), "");

@@ -1,6 +1,6 @@
 package uitest.m6;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -26,7 +26,7 @@ public class HandleDialogTest {
         first.sendKeys("John");
         last.sendKeys("Smith");
 
-        DemoHelper.pause();
+        pause();
         driver.findElement(By.id("clear")).click();
 
         Alert alert = driver.switchTo().alert();
@@ -47,7 +47,7 @@ public class HandleDialogTest {
         first.sendKeys("John");
         last.sendKeys("Smith");
 
-        DemoHelper.pause();
+        pause();
         driver.findElement(By.id("clear")).click();
 
         Alert alert = driver.switchTo().alert();

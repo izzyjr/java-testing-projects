@@ -1,6 +1,6 @@
 package uitest.m5;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +16,10 @@ public class ByLinkText {
         driver.get(HOME);
 
         driver.findElement(By.linkText("Savings")).click();
-        DemoHelper.pause();
+        pause();
 
         driver.findElement(By.partialLinkText("Reg")).click();
-        DemoHelper.pause();
+        pause();
 
         driver.quit();
     }

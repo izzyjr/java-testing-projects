@@ -1,6 +1,6 @@
 package uitest.m7;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +22,7 @@ public class WindowSizeDemo {
 
         driver.get(HOME);
 
-        DemoHelper.pause();
+        pause();
         driver.quit();
     }
 }

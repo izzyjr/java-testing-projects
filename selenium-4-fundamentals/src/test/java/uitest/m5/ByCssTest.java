@@ -1,6 +1,6 @@
 package uitest.m5;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +28,7 @@ public class ByCssTest {
         var checkbox = driver.findElement(By.cssSelector("[type=checkbox]:not(:checked)"));
         checkbox.click();
 
-        DemoHelper.pause();
+        pause();
     }
 
     @AfterMethod

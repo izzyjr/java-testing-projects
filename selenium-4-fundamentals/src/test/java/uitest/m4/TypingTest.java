@@ -1,6 +1,6 @@
 package uitest.m4;
 
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,12 +24,12 @@ public class TypingTest {
         first.sendKeys("Sofia");
         last.sendKeys("Diaz");
         email.sendKeys("sofia@gmail.com");
-        DemoHelper.pause();
+        pause();
         email.clear();
         email.sendKeys("sofia@gmail.com");
         dob.sendKeys("22/03/2022");
 
-        DemoHelper.pause();
+        pause();
         driver.quit();
     }
 }

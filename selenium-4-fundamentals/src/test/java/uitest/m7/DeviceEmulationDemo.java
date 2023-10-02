@@ -1,7 +1,7 @@
 package uitest.m7;
 
 import factory.DriverFactory;
-import helper.DemoHelper;
+import static wait.WaitingUtils.pause;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ public class DeviceEmulationDemo {
         WebDriver driver = DriverFactory.newDevice("Nexus 5");
         driver.get(HOME);
 
-        DemoHelper.pause();
+        pause();
         driver.quit();
     }
 }

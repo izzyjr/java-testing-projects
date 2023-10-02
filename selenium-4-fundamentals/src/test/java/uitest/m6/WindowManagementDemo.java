@@ -1,6 +1,5 @@
 package uitest.m6;
 
-import helper.DemoHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +8,7 @@ import org.testng.annotations.Test;
 
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
+import static wait.WaitingUtils.pause;
 
 public class WindowManagementDemo {
 
@@ -19,7 +19,7 @@ public class WindowManagementDemo {
 
         String firstTab = driver.getWindowHandle();
 
-        DemoHelper.pause();
+        pause();
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get(SAVINGS);
         Assert.assertEquals(driver.getWindowHandles().size(), 2);
