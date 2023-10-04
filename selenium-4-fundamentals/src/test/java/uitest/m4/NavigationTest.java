@@ -1,19 +1,19 @@
 package uitest.m4;
 
-import static wait.WaitingUtils.pause;
-import helper.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.PREFIX;
 import static helper.Pages.SAVINGS;
+import static wait.WaitingUtils.pause;
 
 public class NavigationTest {
 
     @Test
     public void basicNavigationTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
 
         driver.get(PREFIX + HOME);
 

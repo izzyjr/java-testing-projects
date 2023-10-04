@@ -1,7 +1,5 @@
 package uitest.m4;
 
-import static wait.WaitingUtils.pause;
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +7,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.SAVINGS;
+import static wait.WaitingUtils.pause;
 
 public class SelectingTest {
 
     @Test
     public void selectingTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(SAVINGS);
 
         WebElement input = driver.findElement(By.id("deposit"));

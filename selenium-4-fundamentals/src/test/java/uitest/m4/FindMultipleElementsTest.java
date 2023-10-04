@@ -1,6 +1,5 @@
 package uitest.m4;
 
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,13 +7,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 
 public class FindMultipleElementsTest {
 
     @Test
     public void multipleElementsTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         List<WebElement> feedback = driver.findElements(By.className("invalid-feedback"));

@@ -2,7 +2,6 @@ package uitest.m4;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,13 +9,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.SAVINGS;
 
 public class GetTableDataDemo {
 
     @Test
     public void getTableData() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(SAVINGS);
 
         WebElement table = driver.findElement(By.id("rates"));
@@ -37,7 +37,7 @@ public class GetTableDataDemo {
     // Using Google Guava's Object Called: Table
     @Test
     public void scrapeTableData() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(SAVINGS);
 
         Table<Integer, Integer, String> tableObj = HashBasedTable.create();
