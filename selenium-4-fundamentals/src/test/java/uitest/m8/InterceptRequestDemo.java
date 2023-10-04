@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static factory.DevToolsFactory.newChromeDevTool;
+import static factory.DriverFactory.newChromeDriver;
 
 public class InterceptRequestDemo {
     WebDriver driver;
@@ -34,7 +35,7 @@ public class InterceptRequestDemo {
 
     @Test
     public void captureRequestTraffic() {
-        driver = new ChromeDriver();
+        driver = newChromeDriver();
         devTools = newChromeDevTool(driver);
         devTools.createSession();
 
@@ -50,7 +51,7 @@ public class InterceptRequestDemo {
 
     @Test
     public void captureResponseTraffic() {
-        driver = new ChromeDriver();
+        driver = newChromeDriver();
         devTools = newChromeDevTool(driver);
         devTools.createSession();
 
@@ -68,7 +69,7 @@ public class InterceptRequestDemo {
 
     @Test
     public void manipulateTraffic() {
-        driver = new ChromeDriver();
+        driver = newChromeDriver();
         devTools = newChromeDevTool(driver);
         devTools.send(Network.setBlockedURLs(List.of("*/footer.js")));
 

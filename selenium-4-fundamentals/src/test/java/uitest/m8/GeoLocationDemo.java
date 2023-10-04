@@ -1,6 +1,7 @@
 package uitest.m8;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -11,6 +12,8 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.Optional;
 
+import static factory.DevToolsFactory.newChromeDevTool;
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
@@ -18,8 +21,8 @@ public class GeoLocationDemo {
 
     @Test
     public void geoLocationDemo() {
-        ChromeDriver driver = new ChromeDriver();
-        DevTools tools = driver.getDevTools();
+        WebDriver driver = newChromeDriver();
+        DevTools tools = newChromeDevTool(driver);
         tools.createSession();
 
         tools.send(Emulation.setGeolocationOverride(Optional.of(51.49937053990275),
