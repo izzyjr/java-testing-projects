@@ -1,7 +1,5 @@
 package uitest.m6;
 
-import static wait.WaitingUtils.pause;
-import helper.DriverFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +7,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
+import static wait.WaitingUtils.pause;
 
 public class HandleDialogTest {
 
@@ -17,7 +17,7 @@ public class HandleDialogTest {
 
     @Test
     void dismissAlertTest() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -38,7 +38,7 @@ public class HandleDialogTest {
 
     @Test
     void dismissAlertTest_2() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));

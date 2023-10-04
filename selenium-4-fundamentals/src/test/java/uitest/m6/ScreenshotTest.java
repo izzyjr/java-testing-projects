@@ -1,6 +1,5 @@
 package uitest.m6;
 
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
@@ -23,7 +23,7 @@ public class ScreenshotTest {
     
     @Test
     public void fullPageScreenShot() throws IOException {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         TakesScreenshot ts = (TakesScreenshot) driver;
@@ -36,7 +36,7 @@ public class ScreenshotTest {
 
     @Test
     public void elementScreenshot() throws IOException {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         var form = driver.findElement(By.tagName("form"));

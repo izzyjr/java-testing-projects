@@ -15,6 +15,10 @@ public class DriverFactory {
         return applyCommonSetup(new ChromeDriver());
     }
 
+    public static WebDriver newChromeDriver(ChromeOptions options) {
+        return applyCommonSetup(new ChromeDriver(options));
+    }
+
     public static WebDriver newEdgeDriver() {
         return applyCommonSetup(new EdgeDriver());
     }

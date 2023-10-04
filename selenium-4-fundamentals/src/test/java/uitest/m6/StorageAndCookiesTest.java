@@ -1,7 +1,5 @@
 package uitest.m6;
 
-import static wait.WaitingUtils.pause;
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -10,14 +8,16 @@ import org.openqa.selenium.html5.WebStorage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
+import static wait.WaitingUtils.pause;
 
 public class StorageAndCookiesTest {
 
     @Test
     public void storageTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -58,7 +58,7 @@ public class StorageAndCookiesTest {
 
     @Test
     public void cookiesTest() {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         WebDriver.Options options = driver.manage();
 
         options.getCookies().forEach(cookie -> System.out.println(cookie.getName()));

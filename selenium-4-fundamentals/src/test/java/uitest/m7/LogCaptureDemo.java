@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static factory.LogCaptureFactory.newLogCapture;
 import static helper.Pages.HOME;
 
@@ -22,7 +23,7 @@ public class LogCaptureDemo {
     public void logCaptureDemo() {
 
         ChromeOptions options = newLogCapture();
-        driver = new ChromeDriver(options);
+        driver = newChromeDriver(options);
         driver.get(HOME);
         driver.findElement(By.id("register")).click();
 

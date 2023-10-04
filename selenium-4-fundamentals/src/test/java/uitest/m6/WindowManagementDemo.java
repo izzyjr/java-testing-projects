@@ -2,10 +2,10 @@ package uitest.m6;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 import static wait.WaitingUtils.pause;
@@ -14,7 +14,7 @@ public class WindowManagementDemo {
 
     @Test
     public void tabsAndWindowsDemo() {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         String firstTab = driver.getWindowHandle();

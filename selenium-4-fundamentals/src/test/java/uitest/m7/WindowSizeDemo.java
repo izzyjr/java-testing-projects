@@ -1,18 +1,18 @@
 package uitest.m7;
 
-import static wait.WaitingUtils.pause;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
+import static wait.WaitingUtils.pause;
 
 public class WindowSizeDemo {
 
     @Test
     public void windowSizeDemo() {
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = newChromeDriver();
 
         WebDriver.Window window = driver.manage().window();
 

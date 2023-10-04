@@ -1,7 +1,5 @@
 package uitest.m6;
 
-import static wait.WaitingUtils.pause;
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,13 +9,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.LOANS;
+import static wait.WaitingUtils.pause;
 
 public class UploadFileTest {
 
     @Test
     void uploadFile() throws IOException {
-        WebDriver driver = DriverFactory.newDriver();
+        WebDriver driver = newChromeDriver();
         driver.get(LOANS);
 
         WebElement fileInput = driver.findElement(By.cssSelector("input[type=file]"));

@@ -1,6 +1,5 @@
 package uitest.m5;
 
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 
@@ -19,7 +19,7 @@ public class ByIdClassTagTest {
 
     @Test
     public void byId() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         driver.findElement(By.id("register")).click();
@@ -28,7 +28,7 @@ public class ByIdClassTagTest {
 
     @Test
     public void byClass() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
         driver.findElement(By.id("register")).click();
 
@@ -43,7 +43,7 @@ public class ByIdClassTagTest {
 
     @Test
     public void byTagName() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(SAVINGS);
 
         var table = driver.findElement(By.id("rates"));

@@ -1,11 +1,11 @@
 package uitest.m5;
 
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 
@@ -15,7 +15,7 @@ public class ByXpath {
 
     @Test
     public void byXpath() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(SAVINGS);
 
         var cell_1 = driver.findElement(By.xpath("/html/body/main/div/div/div/form/div/div[4]/table/tbody/tr[1]/td[4]"));
@@ -27,7 +27,7 @@ public class ByXpath {
 
     @Test
     public void byXpath_2() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(HOME);
 
         var button =  driver.findElement(By.xpath("//form/button[contains(text(), 'Register')]"));

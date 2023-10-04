@@ -1,6 +1,5 @@
 package uitest.m6;
 
-import helper.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.LOANS;
 import static wait.WaitingUtils.waitUntilClickable;
 
@@ -24,7 +24,7 @@ public class WaitingTest {
 
     @Test
     public void implicitWaitTest() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(LOANS);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
         driver.findElement(By.id("borrow")).sendKeys("500");
@@ -34,7 +34,7 @@ public class WaitingTest {
 
     @Test
     public void explicitWaitTest() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
@@ -46,7 +46,7 @@ public class WaitingTest {
 
     @Test
     public void explicitWaitTestRefactored() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
@@ -56,7 +56,7 @@ public class WaitingTest {
 
     @Test
     public void fluentWait() {
-        driver = DriverFactory.newDriver();
+        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
