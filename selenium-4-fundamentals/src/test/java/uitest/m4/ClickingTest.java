@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static factory.DriverFactory.newChromeDriver;
@@ -12,9 +14,15 @@ import static wait.WaitingUtils.pause;
 
 public class ClickingTest {
 
+    WebDriver driver;
+
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void clickingTest() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         WebElement first = driver.findElement(By.id("firstName"));
@@ -30,7 +38,6 @@ public class ClickingTest {
 
     @Test
     public void moreClicking() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         WebElement checkbox = driver.findElement(By.id("heard-about"));
@@ -42,6 +49,11 @@ public class ClickingTest {
         actions.contextClick();
         pause();
 
+        driver.quit();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
         driver.quit();
     }
 }

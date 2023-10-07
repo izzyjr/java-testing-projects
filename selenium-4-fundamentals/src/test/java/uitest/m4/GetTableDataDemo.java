@@ -5,6 +5,8 @@ import com.google.common.collect.Table;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -14,9 +16,15 @@ import static helper.Pages.SAVINGS;
 
 public class GetTableDataDemo {
 
+    WebDriver driver;
+
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void getTableData() {
-        WebDriver driver = newChromeDriver();
         driver.get(SAVINGS);
 
         WebElement table = driver.findElement(By.id("rates"));
@@ -37,7 +45,6 @@ public class GetTableDataDemo {
     // Using Google Guava's Object Called: Table
     @Test
     public void scrapeTableData() {
-        WebDriver driver = newChromeDriver();
         driver.get(SAVINGS);
 
         Table<Integer, Integer, String> tableObj = HashBasedTable.create();
@@ -57,6 +64,11 @@ public class GetTableDataDemo {
 
         System.out.println(tableObj);
         System.out.println("Best rate: " + tableObj.get(1, 3));
+        driver.quit();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
         driver.quit();
     }
 }
