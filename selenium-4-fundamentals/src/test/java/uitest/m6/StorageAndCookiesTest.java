@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.SessionStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static factory.DriverFactory.newChromeDriver;
@@ -15,9 +17,15 @@ import static wait.WaitingUtils.pause;
 
 public class StorageAndCookiesTest {
 
+    WebDriver driver;
+
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void storageTest() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -58,7 +66,6 @@ public class StorageAndCookiesTest {
 
     @Test
     public void cookiesTest() {
-        WebDriver driver = newChromeDriver();
         WebDriver.Options options = driver.manage();
 
         options.getCookies().forEach(cookie -> System.out.println(cookie.getName()));
@@ -66,5 +73,10 @@ public class StorageAndCookiesTest {
         options.deleteAllCookies();
 
         // etc
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
+        driver.quit();
     }
 }

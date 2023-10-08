@@ -9,6 +9,7 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static factory.DriverFactory.newChromeDriver;
@@ -41,8 +42,8 @@ public class LogCaptureDemo {
         Assert.assertNotEquals(logEntry.getLevel().getName(), "SEVERE");
     }
 
-    @AfterMethod
-    public void cleanup() {
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
         driver.quit();
     }
 }

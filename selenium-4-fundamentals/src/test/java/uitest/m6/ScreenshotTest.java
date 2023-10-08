@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,10 +21,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 public class ScreenshotTest {
 
     WebDriver driver;
+
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
     
     @Test
     public void fullPageScreenShot() throws IOException {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         TakesScreenshot ts = (TakesScreenshot) driver;
@@ -36,7 +41,6 @@ public class ScreenshotTest {
 
     @Test
     public void elementScreenshot() throws IOException {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         var form = driver.findElement(By.tagName("form"));
@@ -47,8 +51,8 @@ public class ScreenshotTest {
         Files.move(screenshot.toPath(), destination, REPLACE_EXISTING);
     }
 
-    @AfterMethod
-    public void cleanup() {
+    @AfterMethod(alwaysRun = true)
+    void closeDriver() {
         driver.quit();
     }
 }

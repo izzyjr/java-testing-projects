@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -22,9 +23,13 @@ public class WaitingTest {
 
     WebDriver driver;
 
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void implicitWaitTest() {
-        driver = newChromeDriver();
         driver.get(LOANS);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
         driver.findElement(By.id("borrow")).sendKeys("500");
@@ -34,7 +39,6 @@ public class WaitingTest {
 
     @Test
     public void explicitWaitTest() {
-        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
@@ -46,7 +50,6 @@ public class WaitingTest {
 
     @Test
     public void explicitWaitTestRefactored() {
-        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
@@ -56,7 +59,6 @@ public class WaitingTest {
 
     @Test
     public void fluentWait() {
-        driver = newChromeDriver();
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
@@ -69,8 +71,8 @@ public class WaitingTest {
         Assert.assertTrue(result.isDisplayed());
     }
 
-    @AfterMethod
-    public void cleanup() {
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
         driver.quit();
     }
 }

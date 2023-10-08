@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -17,9 +18,13 @@ public class ByIdClassTagTest {
 
     WebDriver driver;
 
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void byId() {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         driver.findElement(By.id("register")).click();
@@ -28,7 +33,6 @@ public class ByIdClassTagTest {
 
     @Test
     public void byClass() {
-        driver = newChromeDriver();
         driver.get(HOME);
         driver.findElement(By.id("register")).click();
 
@@ -43,7 +47,6 @@ public class ByIdClassTagTest {
 
     @Test
     public void byTagName() {
-        driver = newChromeDriver();
         driver.get(SAVINGS);
 
         var table = driver.findElement(By.id("rates"));
@@ -53,7 +56,7 @@ public class ByIdClassTagTest {
         System.out.println(sameTable.getText());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void cleanup() {
         driver.quit();
     }

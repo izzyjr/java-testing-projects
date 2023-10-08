@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static factory.DriverFactory.newChromeDriver;
@@ -15,9 +16,13 @@ public class HandleDialogTest {
 
     WebDriver driver;
 
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     void dismissAlertTest() {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -38,7 +43,6 @@ public class HandleDialogTest {
 
     @Test
     void dismissAlertTest_2() {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         var first = driver.findElement(By.id("firstName"));
@@ -57,8 +61,8 @@ public class HandleDialogTest {
         Assert.assertEquals(last.getAttribute("value"), "");
     }
 
-    @AfterMethod
-    void cleanUp() {
+    @AfterMethod(alwaysRun = true)
+    void closeDriver() {
         driver.quit();
     }
 }

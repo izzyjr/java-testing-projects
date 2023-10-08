@@ -3,6 +3,7 @@ package uitest.m5;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static factory.DriverFactory.newChromeDriver;
@@ -13,9 +14,13 @@ public class ByXpath {
 
     WebDriver driver;
 
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+    }
+
     @Test
     public void byXpath() {
-        driver = newChromeDriver();
         driver.get(SAVINGS);
 
         var cell_1 = driver.findElement(By.xpath("/html/body/main/div/div/div/form/div/div[4]/table/tbody/tr[1]/td[4]"));
@@ -27,15 +32,14 @@ public class ByXpath {
 
     @Test
     public void byXpath_2() {
-        driver = newChromeDriver();
         driver.get(HOME);
 
         var button =  driver.findElement(By.xpath("//form/button[contains(text(), 'Register')]"));
         System.out.println(button.getText());
     }
 
-    @AfterMethod
-    void cleanUp() {
+    @AfterMethod(alwaysRun = true)
+    void closeDriver() {
         driver.quit();
     }
 }

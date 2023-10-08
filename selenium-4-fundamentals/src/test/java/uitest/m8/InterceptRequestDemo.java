@@ -10,6 +10,7 @@ import org.openqa.selenium.devtools.v85.network.model.Request;
 import org.openqa.selenium.devtools.v85.network.model.Response;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -20,8 +21,15 @@ import static factory.DevToolsFactory.newChromeDevTool;
 import static factory.DriverFactory.newChromeDriver;
 
 public class InterceptRequestDemo {
+
     WebDriver driver;
     DevTools devTools;
+
+    @BeforeMethod
+    public void initDriver() {
+        driver = newChromeDriver();
+        devTools = newChromeDevTool(driver);
+    }
 
     @Test(enabled = false)
     public void howToGetDevToolsObject() {
@@ -35,8 +43,6 @@ public class InterceptRequestDemo {
 
     @Test
     public void captureRequestTraffic() {
-        driver = newChromeDriver();
-        devTools = newChromeDevTool(driver);
         devTools.createSession();
 
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
@@ -51,8 +57,6 @@ public class InterceptRequestDemo {
 
     @Test
     public void captureResponseTraffic() {
-        driver = newChromeDriver();
-        devTools = newChromeDevTool(driver);
         devTools.createSession();
 
         devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
@@ -69,8 +73,6 @@ public class InterceptRequestDemo {
 
     @Test
     public void manipulateTraffic() {
-        driver = newChromeDriver();
-        devTools = newChromeDevTool(driver);
         devTools.send(Network.setBlockedURLs(List.of("*/footer.js")));
 
         driver.get("http://127.0.0.1:8000/index.html");
@@ -78,8 +80,8 @@ public class InterceptRequestDemo {
         Assert.assertFalse(location.getText().contains("You are visiting us from "));
     }
 
-    @AfterMethod
-    public void cleanup() {
+    @AfterMethod(alwaysRun = true)
+    public void closeDriver() {
         devTools.send(Network.disable());
         devTools.close();
         driver.quit();
