@@ -1,28 +1,19 @@
 package uitest.m6;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.SessionStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 import static wait.WaitingUtils.pause;
 
-public class StorageAndCookiesTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        driver = newChromeDriver();
-    }
+public class StorageAndCookiesTest extends BaseTestClass {
 
     @Test
     public void storageTest() {
@@ -73,10 +64,5 @@ public class StorageAndCookiesTest {
         options.deleteAllCookies();
 
         // etc
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeDriver() {
-        driver.quit();
     }
 }

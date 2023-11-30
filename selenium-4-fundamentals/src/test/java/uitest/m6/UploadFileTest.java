@@ -1,7 +1,7 @@
 package uitest.m6;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -9,15 +9,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.LOANS;
 import static wait.WaitingUtils.pause;
 
-public class UploadFileTest {
+public class UploadFileTest extends BaseTestClass {
 
     @Test
     void uploadFile() throws IOException {
-        WebDriver driver = newChromeDriver();
         driver.get(LOANS);
 
         WebElement fileInput = driver.findElement(By.cssSelector("input[type=file]"));
@@ -29,7 +27,6 @@ public class UploadFileTest {
         fileInput.sendKeys(fileName);
 
         pause();
-        driver.quit();
         path.toFile().deleteOnExit();
     }
 }

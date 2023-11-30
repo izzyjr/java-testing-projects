@@ -1,19 +1,17 @@
 package uitest.m4;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
-public class TypingTest {
+public class TypingTest extends BaseTestClass {
 
     @Test
     public void typingTest() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         WebElement first = driver.findElement(By.id("firstName"));
@@ -30,6 +28,5 @@ public class TypingTest {
         dob.sendKeys("22/03/2022");
 
         pause();
-        driver.quit();
     }
 }

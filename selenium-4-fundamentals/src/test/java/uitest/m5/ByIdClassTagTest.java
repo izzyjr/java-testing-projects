@@ -1,27 +1,17 @@
 package uitest.m5;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 
-public class ByIdClassTagTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        driver = newChromeDriver();
-    }
+public class ByIdClassTagTest extends BaseTestClass {
 
     @Test
     public void byId() {
@@ -54,10 +44,5 @@ public class ByIdClassTagTest {
 
         System.out.println(table.getText());
         System.out.println(sameTable.getText());
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void cleanup() {
-        driver.quit();
     }
 }

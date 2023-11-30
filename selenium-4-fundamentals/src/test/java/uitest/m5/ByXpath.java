@@ -1,23 +1,13 @@
 package uitest.m5;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 
-public class ByXpath {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        driver = newChromeDriver();
-    }
+public class ByXpath extends BaseTestClass {
 
     @Test
     public void byXpath() {
@@ -36,10 +26,5 @@ public class ByXpath {
 
         var button =  driver.findElement(By.xpath("//form/button[contains(text(), 'Register')]"));
         System.out.println(button.getText());
-    }
-
-    @AfterMethod(alwaysRun = true)
-    void closeDriver() {
-        driver.quit();
     }
 }

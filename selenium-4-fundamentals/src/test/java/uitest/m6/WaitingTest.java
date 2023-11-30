@@ -1,5 +1,6 @@
 package uitest.m6;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -9,24 +10,14 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.LOANS;
 import static wait.WaitingUtils.waitUntilClickable;
 
-public class WaitingTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        driver = newChromeDriver();
-    }
+public class WaitingTest extends BaseTestClass {
 
     @Test
     public void implicitWaitTest() {
@@ -69,10 +60,5 @@ public class WaitingTest {
 
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
         Assert.assertTrue(result.isDisplayed());
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeDriver() {
-        driver.quit();
     }
 }

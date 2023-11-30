@@ -1,20 +1,18 @@
 package uitest.m6;
 
-import org.openqa.selenium.WebDriver;
+import base.BaseTestClass;
 import org.openqa.selenium.WindowType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static helper.Pages.SAVINGS;
 import static wait.WaitingUtils.pause;
 
-public class WindowManagementDemo {
+public class WindowManagementDemo extends BaseTestClass {
 
     @Test
     public void tabsAndWindowsDemo() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         String firstTab = driver.getWindowHandle();
@@ -27,7 +25,5 @@ public class WindowManagementDemo {
         driver.switchTo().window(firstTab);
         driver.close();
         Assert.assertEquals(driver.getWindowHandles().size(), 1);
-
-        driver.quit();
     }
 }

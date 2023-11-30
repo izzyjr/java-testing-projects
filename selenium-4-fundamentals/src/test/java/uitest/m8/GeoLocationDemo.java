@@ -1,9 +1,8 @@
 package uitest.m8;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v85.emulation.Emulation;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,15 +12,13 @@ import java.time.Duration;
 import java.util.Optional;
 
 import static factory.DevToolsFactory.newChromeDevTool;
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class GeoLocationDemo {
+public class GeoLocationDemo extends BaseTestClass {
 
     @Test
     public void geoLocationDemo() {
-        WebDriver driver = newChromeDriver();
         DevTools tools = newChromeDevTool(driver);
         tools.createSession();
 
@@ -32,6 +29,5 @@ public class GeoLocationDemo {
         WebElement location = new WebDriverWait(driver, Duration.ofSeconds(3)).until(visibilityOfElementLocated(By.id("location")));
 
         tools.close();
-        driver.quit();
     }
 }

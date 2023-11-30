@@ -1,18 +1,16 @@
 package uitest.m5;
 
+import base.BaseTestClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-import static factory.DriverFactory.newChromeDriver;
 import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
-public class ByLinkText {
+public class ByLinkText extends BaseTestClass {
 
     @Test
     public void byLinkText() {
-        WebDriver driver = newChromeDriver();
         driver.get(HOME);
 
         driver.findElement(By.linkText("Savings")).click();
@@ -20,7 +18,5 @@ public class ByLinkText {
 
         driver.findElement(By.partialLinkText("Reg")).click();
         pause();
-
-        driver.quit();
     }
 }
