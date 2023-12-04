@@ -1,38 +1,42 @@
 package uitest.m4;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
 public class AttributesTest extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
     @Test
-    public void isEnabledTest() {
-        driver.get(HOME);
+    private void isEnabledTest() {
+        homePage.goTo();
 
-        WebElement textarea = driver.findElement(By.id("textarea"));
-        Assert.assertFalse(textarea.isEnabled());
+        Assert.assertFalse(homePage.textAreaEnabled());
 
-        if (textarea.isEnabled()) {
-            textarea.sendKeys("test");
+        if (homePage.textAreaEnabled()) {
+            homePage.sendKeysTextArea("test");
         }
 
         pause();
     }
 
     @Test
-    public void isDisplayed() {
-        driver.get(HOME);
+    private void isDisplayed() {
+        homePage.goTo();
 
-        WebElement feedback = driver.findElement(By.className("invalid-feedback"));
-        Assert.assertFalse(feedback.isDisplayed());
+        Assert.assertFalse(homePage.isFeedbackDisplayed());
 
-        driver.findElement(By.id("register")).click();
-        Assert.assertTrue(feedback.isDisplayed());
+        homePage.clickOnRegister();
+        Assert.assertTrue(homePage.isFeedbackDisplayed());
     }
 }
