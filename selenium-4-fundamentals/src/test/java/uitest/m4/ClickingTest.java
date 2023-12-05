@@ -17,7 +17,7 @@ public class ClickingTest extends BaseTestClass {
     }
 
     @Test
-    public void clickingTest() {
+    private void clickingTest() {
         homePage.goTo();
 
         homePage.clickOnCheckbox();
@@ -28,7 +28,7 @@ public class ClickingTest extends BaseTestClass {
     }
 
     @Test
-    public void moreClicking() {
+    private void moreClicking() {
         homePage.goTo();
 
         homePage.doubleClickCheckbox();
