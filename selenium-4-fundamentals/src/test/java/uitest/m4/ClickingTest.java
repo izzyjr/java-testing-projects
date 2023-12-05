@@ -1,26 +1,27 @@
 package uitest.m4;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
 public class ClickingTest extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
     @Test
     public void clickingTest() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        WebElement first = driver.findElement(By.id("firstName"));
-        WebElement checkbox = driver.findElement(By.id("heard-about"));
-        WebElement registerBtn = driver.findElement(By.id("register"));
-
-        checkbox.click();
-        registerBtn.click();
+        homePage.clickOnCheckbox();
+        homePage.clickOnRegister();
         pause();
 
         driver.quit();
@@ -28,15 +29,11 @@ public class ClickingTest extends BaseTestClass {
 
     @Test
     public void moreClicking() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        WebElement checkbox = driver.findElement(By.id("heard-about"));
-        Actions actions = new Actions(driver);
-
-        actions.doubleClick(checkbox).perform();
-
+        homePage.doubleClickCheckbox();
         pause();
-        actions.contextClick();
+        homePage.rightClick();
         pause();
 
         driver.quit();
