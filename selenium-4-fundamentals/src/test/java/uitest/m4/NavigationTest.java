@@ -1,27 +1,38 @@
 package uitest.m4;
 
 import base.BaseTestClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
+import pages.Savings;
 
-import static helper.Pages.*;
 import static wait.WaitingUtils.pause;
 
 public class NavigationTest extends BaseTestClass {
 
+    private Home homePage;
+    private Savings savingsPage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+        savingsPage = Savings.savingsPage(driver);
+    }
+
     @Test
-    public void basicNavigationTest() {
+    private void basicNavigationTest() {
 
-        driver.get(PREFIX + HOME);
-
-        pause();
-        driver.get(PREFIX + SAVINGS);
+        homePage.goTo();
 
         pause();
-        driver.navigate().back();
+        savingsPage.goTo();
 
         pause();
-        driver.navigate().forward();
+        back();
 
-        driver.navigate().refresh();
+        pause();
+        forward();
+
+        refresh();
     }
 }

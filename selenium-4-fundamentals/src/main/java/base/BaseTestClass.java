@@ -19,4 +19,16 @@ public class BaseTestClass {
     public void closeDriver() {
         driver.quit();
     }
+
+    public void forward() {
+        driver.navigate().forward();
+    }
+
+    public void back() {
+        driver.navigate().back();
+    }
+
+    public void refresh() {
+        driver.navigate().refresh();
+    }
 }
