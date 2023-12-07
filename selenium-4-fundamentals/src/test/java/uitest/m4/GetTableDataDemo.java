@@ -38,7 +38,7 @@ public class GetTableDataDemo extends BaseTestClass {
 
     // Using Google Guava's Object Called: Table
     @Test
-    public void scrapeTableData() {
+    private void scrapeTableData() {
         driver.get(SAVINGS);
 
         Table<Integer, Integer, String> tableObj = HashBasedTable.create();
