@@ -19,6 +19,12 @@ public class Home {
     @FindBy(id = "lastName")
     private WebElement lastName;
 
+    @FindBy(id = "email")
+    private WebElement email;
+
+    @FindBy(id = "dob")
+    private WebElement dob;
+
     @FindBy(id = "register")
     private WebElement register;
 
@@ -81,5 +87,30 @@ public class Home {
 
     public void rightClick() {
         actions.contextClick().perform();
+    }
+
+    public void sendKeysToFields(fields field, String text) {
+        switch (field) {
+            case DOB -> dob.sendKeys(text);
+            case FIRST_NAME -> firstName.sendKeys(text);
+            case LAST_NAME -> lastName.sendKeys(text);
+            case EMAIL -> email.sendKeys(text);
+        }
+    }
+
+    public void clearField(fields field) {
+        switch (field) {
+            case DOB -> dob.clear();
+            case FIRST_NAME -> firstName.clear();
+            case LAST_NAME -> lastName.clear();
+            case EMAIL -> email.clear();
+        }
+    }
+
+    public enum fields {
+        FIRST_NAME,
+        LAST_NAME,
+        EMAIL,
+        DOB
     }
 }

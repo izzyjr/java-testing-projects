@@ -1,31 +1,37 @@
 package uitest.m4;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
+import static pages.Home.fields.DOB;
+import static pages.Home.fields.EMAIL;
+import static pages.Home.fields.FIRST_NAME;
+import static pages.Home.fields.LAST_NAME;
 import static wait.WaitingUtils.pause;
 
 public class TypingTest extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
     @Test
     public void typingTest() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        WebElement first = driver.findElement(By.id("firstName"));
-        WebElement last = driver.findElement(By.id("lastName"));
-        WebElement email = driver.findElement(By.id("email"));
-        WebElement dob = driver.findElement(By.id("dob"));
+        homePage.sendKeysToFields(FIRST_NAME, "Sofia");
+        homePage.sendKeysToFields(LAST_NAME,"Diaz");
+        homePage.sendKeysToFields(EMAIL,"sofia@gmail.com");
 
-        first.sendKeys("Sofia");
-        last.sendKeys("Diaz");
-        email.sendKeys("sofia@gmail.com");
         pause();
-        email.clear();
-        email.sendKeys("sofia@gmail.com");
-        dob.sendKeys("22/03/2022");
+        homePage.clearField(EMAIL);
+        homePage.sendKeysToFields(EMAIL, "sofia@gmail.com");
+        homePage.sendKeysToFields(DOB, "01/01/2000");
 
         pause();
     }
