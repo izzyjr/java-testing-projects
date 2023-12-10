@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Home;
 
+import static pages.Home.fields.TEXT_AREA;
 import static wait.WaitingUtils.pause;
 
 public class AttributesTest extends BaseTestClass {
@@ -24,7 +25,7 @@ public class AttributesTest extends BaseTestClass {
         Assert.assertFalse(homePage.textAreaEnabled());
 
         if (homePage.textAreaEnabled()) {
-            homePage.sendKeysTextArea("test");
+            homePage.sendKeysToFields(TEXT_AREA,"test");
         }
 
         pause();

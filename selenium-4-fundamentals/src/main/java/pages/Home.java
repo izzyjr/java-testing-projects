@@ -40,6 +40,9 @@ public class Home {
     @FindBy(className = "invalid-feedback")
     private List<WebElement> feedback;
 
+    @FindBy(css = "input[type=date]")
+    private WebElement datePicker;
+
     private static final String URL = "file:///" + System.getProperty("user.home") + "/Desktop/java-testing-projects" +
             "/selenium-4-fundamentals/src/web/index.html";
 
@@ -95,6 +98,7 @@ public class Home {
             case FIRST_NAME -> firstName.sendKeys(text);
             case LAST_NAME -> lastName.sendKeys(text);
             case EMAIL -> email.sendKeys(text);
+            case TEXT_AREA -> textArea.sendKeys(text);
         }
     }
 
@@ -119,6 +123,8 @@ public class Home {
         FIRST_NAME,
         LAST_NAME,
         EMAIL,
-        DOB
+        DOB,
+        DATE_PICKER,
+        TEXT_AREA
     }
 }
