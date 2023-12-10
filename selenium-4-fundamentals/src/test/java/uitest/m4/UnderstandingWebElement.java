@@ -1,22 +1,25 @@
 package uitest.m4;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static helper.Pages.HOME;
+import pages.Home;
 
 public class UnderstandingWebElement extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
     @Test
     public void webElementTest() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        WebElement input = driver.findElement(By.id("firstName"));
-        System.out.println(input.isDisplayed());
+        System.out.println(homePage.isFirstnameDisplayed());
 
-        WebElement button = driver.findElement(By.id("register"));
-        System.out.println(button.getText());
+        System.out.println(homePage.getRegisterText());
     }
 }

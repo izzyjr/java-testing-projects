@@ -107,6 +107,14 @@ public class Home {
         }
     }
 
+    public boolean isFirstnameDisplayed() {
+        return firstName.isDisplayed();
+    }
+
+    public String getRegisterText() {
+        return register.getText();
+    }
+
     public enum fields {
         FIRST_NAME,
         LAST_NAME,
