@@ -16,6 +16,9 @@ public class Savings {
     @FindBy(id = "rates")
     private WebElement table;
 
+    @FindBy(tagName = "table")
+    private WebElement sameTable;
+
     @FindBy(tagName = "tr")
     private List<WebElement> rows;
 
@@ -49,6 +52,10 @@ public class Savings {
 
     public String getTableText() {
         return table.getText();
+    }
+
+    public String getSameTableText() {
+        return sameTable.getText();
     }
 
     public String getRowText(int row) {
