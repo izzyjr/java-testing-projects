@@ -13,13 +13,13 @@ public class ByIdClassTagTest extends BaseTestClass {
     private Savings savingsPage;
 
     @BeforeMethod
-    public void pageSetup() {
+    private void pageSetup() {
         homePage = Home.homePage(driver);
         savingsPage = Savings.savingsPage(driver);
     }
 
     @Test
-    public void byId() {
+    private void byId() {
         homePage.goTo();
 
         homePage.clickOnRegister();
@@ -27,7 +27,7 @@ public class ByIdClassTagTest extends BaseTestClass {
     }
 
     @Test
-    public void byClass() {
+    private void byClass() {
         homePage.goTo();
         homePage.clickOnRegister();
 
@@ -37,7 +37,7 @@ public class ByIdClassTagTest extends BaseTestClass {
     }
 
     @Test
-    public void byTagName() {
+    private void byTagName() {
         savingsPage.goTo();
 
         System.out.println(savingsPage.getTableText());

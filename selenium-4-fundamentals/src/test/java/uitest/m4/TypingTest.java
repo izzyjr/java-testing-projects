@@ -21,7 +21,7 @@ public class TypingTest extends BaseTestClass {
     }
 
     @Test
-    public void typingTest() {
+    private void typingTest() {
         homePage.goTo();
 
         homePage.sendKeysToFields(FIRST_NAME, "Sofia");

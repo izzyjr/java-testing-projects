@@ -9,7 +9,7 @@ import static factory.DriverFactory.newChromeDriver;
 public class TestDrive {
 
     @Test
-    public void test() {
+    private void test() {
         WebDriver driver = newChromeDriver();
         driver.quit();
     }

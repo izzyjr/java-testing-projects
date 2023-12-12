@@ -15,7 +15,7 @@ public class UnderstandingWebElement extends BaseTestClass {
     }
 
     @Test
-    public void webElementTest() {
+    private void webElementTest() {
         homePage.goTo();
 
         System.out.println(homePage.isFirstnameDisplayed());

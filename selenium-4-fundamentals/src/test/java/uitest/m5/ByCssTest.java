@@ -18,13 +18,13 @@ public class ByCssTest extends BaseTestClass {
     }
 
     @Test
-    public void byCssSelector() {
+    private void byCssSelector() {
         homePage.goTo();
         homePage.sendKeysToFields(DATE_PICKER, "06/14/2023");
     }
 
     @Test
-    public void byCssSelector_2() {
+    private void byCssSelector_2() {
         homePage.goTo();
         homePage.clickOnCheckbox();
 
