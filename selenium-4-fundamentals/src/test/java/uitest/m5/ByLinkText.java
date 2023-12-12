@@ -1,22 +1,29 @@
 package uitest.m5;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
 public class ByLinkText extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
     @Test
     public void byLinkText() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        driver.findElement(By.linkText("Savings")).click();
+        homePage.clickOnSavings();
         pause();
 
-        driver.findElement(By.partialLinkText("Reg")).click();
+        homePage.clickOnReg();
         pause();
     }
 }

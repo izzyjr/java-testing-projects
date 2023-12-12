@@ -43,6 +43,12 @@ public class Home {
     @FindBy(css = "input[type=date]")
     private WebElement datePicker;
 
+    @FindBy(linkText = "Savings")
+    private WebElement savings;
+
+    @FindBy(partialLinkText = "Reg")
+    private WebElement reg;
+
     private static final String URL = "file:///" + System.getProperty("user.home") + "/Desktop/java-testing-projects" +
             "/selenium-4-fundamentals/src/web/index.html";
 
@@ -117,6 +123,14 @@ public class Home {
 
     public String getRegisterText() {
         return register.getText();
+    }
+
+    public void clickOnSavings() {
+        savings.click();
+    }
+
+    public void clickOnReg() {
+        reg.click();
     }
 
     public enum fields {
