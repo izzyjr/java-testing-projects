@@ -34,6 +34,12 @@ public class Savings {
     @FindBy(id = "result")
     private WebElement result;
 
+    @FindBy(xpath = "/html/body/main/div/div/div/form/div/div[4]/table/tbody/tr[1]/td[4]")
+    private WebElement cell1;
+
+    @FindBy(xpath = "//*[@id='rates']/tbody/tr[1]/td[4]")
+    private WebElement cell2;
+
     private static final String URL = "file:///" + System.getProperty("user.home") + "/Desktop/java-testing-projects" +
             "/selenium-4-fundamentals/src/web/savings.html";
 
@@ -82,5 +88,13 @@ public class Savings {
 
     public String getResultText() {
         return result.getText();
+    }
+
+    public String getCell1Text() {
+        return cell1.getText();
+    }
+
+    public String getCell2Text() {
+        return cell2.getText();
     }
 }

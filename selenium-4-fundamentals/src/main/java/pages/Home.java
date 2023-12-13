@@ -28,6 +28,9 @@ public class Home {
     @FindBy(id = "register")
     private WebElement register;
 
+    @FindBy(xpath = "//form/button[contains(text(), 'Register')]")
+    private WebElement registerByXpath;
+
     @FindBy(id = "textarea")
     private WebElement textArea;
 
@@ -123,6 +126,10 @@ public class Home {
 
     public String getRegisterText() {
         return register.getText();
+    }
+
+    public String getRegisterByXpathText() {
+        return registerByXpath.getText();
     }
 
     public void clickOnSavings() {

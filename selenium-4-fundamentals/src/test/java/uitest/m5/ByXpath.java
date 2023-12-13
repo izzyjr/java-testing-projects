@@ -1,30 +1,34 @@
 package uitest.m5;
 
 import base.BaseTestClass;
-import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static helper.Pages.HOME;
-import static helper.Pages.SAVINGS;
+import pages.Home;
+import pages.Savings;
 
 public class ByXpath extends BaseTestClass {
 
+    private Savings savingsPage;
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        savingsPage = Savings.savingsPage(driver);
+        homePage = Home.homePage(driver);
+    }
+
     @Test
     public void byXpath() {
-        driver.get(SAVINGS);
+        savingsPage.goTo();
 
-        var cell_1 = driver.findElement(By.xpath("/html/body/main/div/div/div/form/div/div[4]/table/tbody/tr[1]/td[4]"));
-        System.out.println("Chrome full xpath: " + cell_1.getText());
-
-        var cell_2 = driver.findElement(By.xpath("//*[@id='rates']/tbody/tr[1]/td[4]"));
-        System.out.println("Chrome xpath: " + cell_2.getText());
+        System.out.println("Chrome full xpath: " + savingsPage.getCell1Text());
+        System.out.println("Chrome xpath: " + savingsPage.getCell2Text());
     }
 
     @Test
     public void byXpath_2() {
-        driver.get(HOME);
+        homePage.goTo();
 
-        var button =  driver.findElement(By.xpath("//form/button[contains(text(), 'Register')]"));
-        System.out.println(button.getText());
+        System.out.println(homePage.getRegisterByXpathText());
     }
 }
