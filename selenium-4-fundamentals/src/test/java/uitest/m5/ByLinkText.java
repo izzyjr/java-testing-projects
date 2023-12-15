@@ -17,7 +17,7 @@ public class ByLinkText extends BaseTestClass {
     }
 
     @Test
-    public void byLinkText() {
+    private void byLinkText() {
         homePage.goTo();
 
         homePage.clickOnSavings();

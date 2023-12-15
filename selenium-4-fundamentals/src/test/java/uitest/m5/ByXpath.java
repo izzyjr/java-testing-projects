@@ -18,7 +18,7 @@ public class ByXpath extends BaseTestClass {
     }
 
     @Test
-    public void byXpath() {
+    private void byXpath() {
         savingsPage.goTo();
 
         System.out.println("Chrome full xpath: " + savingsPage.getCell1Text());
@@ -26,7 +26,7 @@ public class ByXpath extends BaseTestClass {
     }
 
     @Test
-    public void byXpath_2() {
+    private void byXpath_2() {
         homePage.goTo();
 
         System.out.println(homePage.getRegisterByXpathText());
