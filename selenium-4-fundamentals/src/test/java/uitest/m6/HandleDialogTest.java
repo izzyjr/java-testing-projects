@@ -1,53 +1,52 @@
 package uitest.m6;
 
 import base.BaseTestClass;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
 public class HandleDialogTest extends BaseTestClass {
 
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        homePage = Home.homePage(driver);
+    }
+
+
     @Test
-    void dismissAlertTest() {
-        driver.get(HOME);
+    private void dismissAlertTest() {
+        homePage.goTo();
 
-        var first = driver.findElement(By.id("firstName"));
-        var last = driver.findElement(By.id("lastName"));
-
-        first.sendKeys("John");
-        last.sendKeys("Smith");
+        homePage.sendKeysToFields(Home.fields.FIRST_NAME, "John");
+        homePage.sendKeysToFields(Home.fields.LAST_NAME, "Smith");
 
         pause();
-        driver.findElement(By.id("clear")).click();
+        homePage.clickOnClear();
 
-        Alert alert = driver.switchTo().alert();
-        alert.dismiss();
+        homePage.dismissAlert();
 
-        Assert.assertEquals(first.getAttribute("value"), "John");
-        Assert.assertEquals(last.getAttribute("value"), "Smith");
+        Assert.assertEquals(homePage.getFirstnameAttribute(), "John");
+        Assert.assertEquals(homePage.getLastnameAttribute(), "Smith");
     }
 
     @Test
-    void dismissAlertTest_2() {
-        driver.get(HOME);
+    private void dismissAlertTest_2() {
+        homePage.goTo();
 
-        var first = driver.findElement(By.id("firstName"));
-        var last = driver.findElement(By.id("lastName"));
-
-        first.sendKeys("John");
-        last.sendKeys("Smith");
+        homePage.sendKeysToFields(Home.fields.FIRST_NAME, "John");
+        homePage.sendKeysToFields(Home.fields.LAST_NAME, "Smith");
 
         pause();
-        driver.findElement(By.id("clear")).click();
+        homePage.clickOnClear();
 
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
+        homePage.acceptAlert();
 
-        Assert.assertEquals(first.getAttribute("value"), "");
-        Assert.assertEquals(last.getAttribute("value"), "");
+        Assert.assertEquals(homePage.getFirstnameAttribute(), "");
+        Assert.assertEquals(homePage.getLastnameAttribute(), "");
     }
 }

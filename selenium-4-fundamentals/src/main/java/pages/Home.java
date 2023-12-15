@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +13,7 @@ public class Home {
 
     private final WebDriver driver;
     private Actions actions;
+    private Alert alert;
 
     @FindBy(id = "firstName")
     private WebElement firstName;
@@ -51,6 +53,9 @@ public class Home {
 
     @FindBy(partialLinkText = "Reg")
     private WebElement reg;
+
+    @FindBy(id = "clear")
+    private WebElement clear;
 
     private static final String URL = "file:///" + System.getProperty("user.home") + "/Desktop/java-testing-projects" +
             "/selenium-4-fundamentals/src/web/index.html";
@@ -138,6 +143,28 @@ public class Home {
 
     public void clickOnReg() {
         reg.click();
+    }
+
+    public void clickOnClear() {
+        clear.click();
+    }
+
+    public String getFirstnameAttribute() {
+        return firstName.getAttribute("value");
+    }
+
+    public String getLastnameAttribute() {
+        return lastName.getAttribute("value");
+    }
+
+    public void acceptAlert() {
+        alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    public void dismissAlert() {
+        alert = driver.switchTo().alert();
+        alert.dismiss();
     }
 
     public enum fields {
