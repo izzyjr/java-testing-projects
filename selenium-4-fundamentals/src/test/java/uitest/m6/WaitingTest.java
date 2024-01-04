@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Loans;
 
 import java.time.Duration;
 
@@ -19,19 +21,27 @@ import static wait.WaitingUtils.waitUntilClickable;
 
 public class WaitingTest extends BaseTestClass {
 
+    private Loans loansPage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        loansPage = Loans.loansPage(driver);
+    }
+
     @Test
     public void implicitWaitTest() {
-        driver.get(LOANS);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
-        driver.findElement(By.id("borrow")).sendKeys("500");
+        loansPage.goTo();
 
-        driver.findElement(By.id("result")).click();
+        loansPage.implicitlyWait(6);
+        loansPage.sendKeysBorrow("500");
+
+        loansPage.clickOnResult();
     }
 
     @Test
     public void explicitWaitTest() {
-        driver.get(LOANS);
-        driver.findElement(By.id("borrow")).sendKeys("500");
+        loansPage.goTo();
+        loansPage.sendKeysBorrow("500");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
 
