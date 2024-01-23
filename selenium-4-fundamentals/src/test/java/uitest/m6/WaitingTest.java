@@ -16,7 +16,6 @@ import pages.Loans;
 
 import java.time.Duration;
 
-import static helper.Pages.LOANS;
 import static wait.WaitingUtils.waitUntilClickable;
 
 public class WaitingTest extends BaseTestClass {
@@ -43,7 +42,7 @@ public class WaitingTest extends BaseTestClass {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        WebDriverWait wait = loansPage.waitFor(6);
 
         WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
         Assert.assertTrue(result.isDisplayed());
@@ -51,8 +50,8 @@ public class WaitingTest extends BaseTestClass {
 
     @Test
     public void explicitWaitTestRefactored() {
-        driver.get(LOANS);
-        driver.findElement(By.id("borrow")).sendKeys("500");
+        loansPage.goTo();
+        loansPage.sendKeysBorrow("500");
 
         WebElement result = waitUntilClickable(driver, By.id("result"), 6);
         Assert.assertTrue(result.isDisplayed());
@@ -60,8 +59,8 @@ public class WaitingTest extends BaseTestClass {
 
     @Test
     public void fluentWait() {
-        driver.get(LOANS);
-        driver.findElement(By.id("borrow")).sendKeys("500");
+        loansPage.goTo();
+        loansPage.sendKeysBorrow("500");
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(6))
