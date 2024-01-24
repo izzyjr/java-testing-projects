@@ -28,7 +28,7 @@ public class WaitingTest extends BaseTestClass {
     }
 
     @Test
-    public void implicitWaitTest() {
+    private void implicitWaitTest() {
         loansPage.goTo();
 
         loansPage.implicitlyWait(6);
@@ -38,7 +38,7 @@ public class WaitingTest extends BaseTestClass {
     }
 
     @Test
-    public void explicitWaitTest() {
+    private void explicitWaitTest() {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
@@ -49,7 +49,7 @@ public class WaitingTest extends BaseTestClass {
     }
 
     @Test
-    public void explicitWaitTestRefactored() {
+    private void explicitWaitTestRefactored() {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
@@ -58,7 +58,7 @@ public class WaitingTest extends BaseTestClass {
     }
 
     @Test
-    public void fluentWait() {
+    private void fluentWait() {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
