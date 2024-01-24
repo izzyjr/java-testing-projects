@@ -1,21 +1,28 @@
 package uitest.m7;
 
+import base.BaseTestClass;
 import factory.DriverFactory;
-import static wait.WaitingUtils.pause;
-import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
-import static helper.Pages.HOME;
+import static wait.WaitingUtils.pause;
 
-public class DeviceEmulationDemo {
+public class DeviceEmulationDemo extends BaseTestClass {
+
+    private Home homePage;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        driver = DriverFactory.newDevice("Nexus 5");
+        homePage = Home.homePage(driver);
+    }
+
 
     @Test
-    public void deviceEmulation() {
-
-        WebDriver driver = DriverFactory.newDevice("Nexus 5");
-        driver.get(HOME);
+    private void deviceEmulation() {
+        homePage.goTo();
 
         pause();
-        driver.quit();
     }
 }
