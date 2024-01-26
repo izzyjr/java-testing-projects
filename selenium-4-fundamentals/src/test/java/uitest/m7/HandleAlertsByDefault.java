@@ -1,28 +1,41 @@
 package uitest.m7;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
 import static factory.DriverFactory.newChromeDriver;
-import static helper.Pages.HOME;
 import static wait.WaitingUtils.pause;
 
 public class HandleAlertsByDefault {
 
-    @Test
-    public void handleAlertsByDefault() {
+    private Home homePage;
+    private WebDriver driver;
+
+    @BeforeMethod
+    private void pageSetUp() {
         ChromeOptions options = new ChromeOptions();
         options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS);
 
-        WebDriver driver = newChromeDriver(options);
-        driver.get(HOME);
+        driver = newChromeDriver(options);
+        homePage = Home.homePage(driver);
+    }
 
-        driver.findElement(By.id("clear")).click();
-        driver.findElement(By.id("register")).click();
+    @Test
+    private void handleAlertsByDefault() {
+        homePage.goTo();
+
+        homePage.clickOnClear();
+        homePage.clickOnRegister();
         pause();
+    }
+
+    @AfterMethod()
+    private void closeDriver() {
         driver.quit();
     }
 }
