@@ -1,29 +1,39 @@
 package uitest.m7;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
 import static factory.DriverFactory.newChromeDriver;
-import static helper.Pages.HOME;
 
 public class HeadlessModeDemo {
 
-    @Test
-    public void headlessDemo() {
+    private Home homePage;
+    private WebDriver driver;
 
+    @BeforeMethod
+    private void pageSetUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless=true");
 
-        WebDriver driver = newChromeDriver(options);
-        driver.get(HOME);
+        driver = newChromeDriver(options);
+        homePage = Home.homePage(driver);
+    }
 
-        WebElement button = driver.findElement(By.id("register"));
-        Assert.assertEquals(button.getText(), "Register");
+    @Test
+    public void headlessDemo() {
+        homePage.goTo();
 
+        Assert.assertEquals(homePage.getRegisterText(), "Register");
+        driver.quit();
+    }
+
+    @AfterMethod()
+    private void closeDriver() {
         driver.quit();
     }
 }
