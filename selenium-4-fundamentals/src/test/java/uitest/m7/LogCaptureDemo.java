@@ -1,8 +1,6 @@
 package uitest.m7;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
@@ -11,22 +9,29 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.Home;
 
 import static factory.DriverFactory.newChromeDriver;
 import static factory.LogCaptureFactory.newLogCapture;
-import static helper.Pages.HOME;
 
 public class LogCaptureDemo {
 
-    WebDriver driver;
+    private Home homePage;
+    private WebDriver driver;
+
+    @BeforeMethod
+    private void pageSetUp() {
+        ChromeOptions options = newLogCapture();
+
+        driver = newChromeDriver(options);
+        homePage = Home.homePage(driver);
+    }
 
     @Test
-    public void logCaptureDemo() {
+    private void logCaptureDemo() {
 
-        ChromeOptions options = newLogCapture();
-        driver = newChromeDriver(options);
-        driver.get(HOME);
-        driver.findElement(By.id("register")).click();
+        homePage.goTo();
+        homePage.clickOnRegister();
 
         LogEntries browserLogs = driver.manage().logs().get(LogType.BROWSER);
         Assert.assertFalse(browserLogs.getAll().isEmpty());
@@ -43,7 +48,7 @@ public class LogCaptureDemo {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void closeDriver() {
+    private void closeDriver() {
         driver.quit();
     }
 }

@@ -25,7 +25,7 @@ public class HeadlessModeDemo {
     }
 
     @Test
-    public void headlessDemo() {
+    private void headlessDemo() {
         homePage.goTo();
 
         Assert.assertEquals(homePage.getRegisterText(), "Register");
