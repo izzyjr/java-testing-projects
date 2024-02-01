@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class Home {
@@ -165,6 +167,10 @@ public class Home {
     public void dismissAlert() {
         alert = driver.switchTo().alert();
         alert.dismiss();
+    }
+
+    public WebDriverWait waitFor(int seconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
     public enum fields {
