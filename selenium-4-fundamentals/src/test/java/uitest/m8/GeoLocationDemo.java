@@ -25,7 +25,7 @@ public class GeoLocationDemo extends BaseTestClass {
     }
 
     @Test
-    public void geoLocationDemo() {
+    private void geoLocationDemo() {
         DevTools tools = newChromeDevTool(driver);
         tools.createSession();
 
