@@ -8,11 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Loans;
+import static pages.Loans.loansIDSs.RESULT;
 
 import java.time.Duration;
 
@@ -42,9 +42,7 @@ public class WaitingTest extends BaseTestClass {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
-        WebDriverWait wait = loansPage.waitFor(6);
-
-        WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("result")));
+        WebElement result = loansPage.waitFor(6, RESULT);
         Assert.assertTrue(result.isDisplayed());
     }
 

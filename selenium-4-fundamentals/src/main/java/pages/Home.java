@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class Home {
 
@@ -169,8 +172,18 @@ public class Home {
         alert.dismiss();
     }
 
-    public WebDriverWait waitFor(int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds));
+    public WebElement waitFor(int seconds, homeIDs id) {
+        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+                .until(visibilityOfElementLocated(By.id(id.id)));
+    }
+
+    public enum homeIDs {
+        LOCATION("location");
+
+        final String id;
+        homeIDs(String id) {
+            this.id = id;
+        }
     }
 
     public enum fields {

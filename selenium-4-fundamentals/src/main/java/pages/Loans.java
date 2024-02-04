@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class Loans {
 
@@ -57,7 +60,17 @@ public class Loans {
         result.isDisplayed();
     }
 
-    public WebDriverWait waitFor(int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds));
+    public WebElement waitFor(int seconds, loansIDSs id) {
+        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+                .until(visibilityOfElementLocated(By.id(id.id)));
+    }
+
+    public enum loansIDSs {
+        RESULT("result");
+
+        final String id;
+        loansIDSs(String id) {
+            this.id = id;
+        }
     }
 }
