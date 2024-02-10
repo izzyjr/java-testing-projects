@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -65,12 +66,36 @@ public class Loans {
                 .until(visibilityOfElementLocated(By.id(id.id)));
     }
 
+    public void enterBorrowAmount(String value) {
+        driver.findElement(By.id("borrow")).sendKeys(value);
+    }
+
+    public void selectTimePeriod(Period period) {
+        Select dropdown = new Select(driver.findElement((By.id("period"))));
+        dropdown.selectByVisibleText(period.toString());
+    }
+
     public enum loansIDSs {
         RESULT("result");
 
         final String id;
         loansIDSs(String id) {
             this.id = id;
+        }
+    }
+
+    public enum Period {
+        ONE_MONTH("1 month"),
+        TWO_MONTH("2 months"),
+        ONE_YEAR("1 year");
+
+        final String period;
+        Period(String period) {
+            this.period = period;
+        }
+        @Override
+        public String toString() {
+            return period;
         }
     }
 }
