@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -82,6 +83,10 @@ public class Loans {
         loansIDSs(String id) {
             this.id = id;
         }
+    }
+
+    public void verifyResultMessage(String expectedMessage) {
+        Assert.assertEquals(waitFor(6, loansIDSs.RESULT).getText(), expectedMessage);
     }
 
     public enum Period {
