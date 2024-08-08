@@ -1,6 +1,7 @@
 package uitest.m8;
 
 import base.BaseTestClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v85.emulation.Emulation;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 import static factory.DevToolsFactory.newChromeDevTool;
 import static pages.Home.homeIDs.LOCATION;
+import static wait.WaitingUtils.waitUntilVisible;
 
 public class GeoLocationDemo extends BaseTestClass {
 
@@ -31,7 +33,7 @@ public class GeoLocationDemo extends BaseTestClass {
                 Optional.of(-0.09953871364387087), Optional.of(100)));
 
         homePage.goTo();
-        WebElement location = homePage.waitFor(6, LOCATION);
+        WebElement location = waitUntilVisible(driver, By.id(LOCATION.getId()),6);
 
         tools.close();
     }
