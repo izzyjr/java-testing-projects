@@ -6,12 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class Loans {
 
@@ -62,11 +59,6 @@ public class Loans {
         result.isDisplayed();
     }
 
-    public WebElement waitFor(int seconds, loansIDSs id) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
-                .until(visibilityOfElementLocated(By.id(id.id)));
-    }
-
     public void enterBorrowAmount(String value) {
         driver.findElement(By.id("borrow")).sendKeys(value);
     }
@@ -80,13 +72,18 @@ public class Loans {
         RESULT("result");
 
         final String id;
+
         loansIDSs(String id) {
             this.id = id;
         }
+
+        public String getId() {
+            return this.id;
+        }
     }
 
-    public void verifyResultMessage(String expectedMessage) {
-        Assert.assertEquals(waitFor(6, loansIDSs.RESULT).getText(), expectedMessage);
+    public void verifyResultMessage(WebElement result, String expectedMessage) {
+        Assert.assertEquals(result.getText(), expectedMessage);
     }
 
     public enum Period {

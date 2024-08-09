@@ -1,6 +1,8 @@
 package uitest.m9;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,6 +12,7 @@ import pages.Loans;
 import static factory.DriverFactory.newChromeDriver;
 import static pages.Loans.Period.ONE_MONTH;
 import static pages.Loans.loansIDSs.RESULT;
+import static wait.WaitingUtils.waitUntilVisible;
 
 public class PomAbstractionLevelThreeTest {
 
@@ -26,8 +29,8 @@ public class PomAbstractionLevelThreeTest {
         loansPage.goTo();
         loansPage.enterBorrowAmount("2000");
         loansPage.selectTimePeriod(ONE_MONTH);
-        String resultMessage = loansPage.waitFor(6, RESULT).getText();
-        Assert.assertEquals(resultMessage, "You will pay us back 4000");
+        WebElement resultMessage = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
+        Assert.assertEquals(resultMessage.getText(), "You will pay us back 4000");
     }
 
     @AfterMethod

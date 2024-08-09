@@ -26,7 +26,7 @@
     let sum = input.value;
     if (sum < 1) { return; }
     result.removeAttribute("style");
-    result.innerText = `You will pays us back ${sum * 2}`;
+    result.innerText = `You will pay us back ${sum * 2}`;
   }
 
 })()

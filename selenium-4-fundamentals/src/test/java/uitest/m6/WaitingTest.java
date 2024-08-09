@@ -12,11 +12,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Loans;
-import static pages.Loans.loansIDSs.RESULT;
 
 import java.time.Duration;
 
+import static pages.Loans.loansIDSs.RESULT;
 import static wait.WaitingUtils.waitUntilClickable;
+import static wait.WaitingUtils.waitUntilVisible;
 
 public class WaitingTest extends BaseTestClass {
 
@@ -42,7 +43,7 @@ public class WaitingTest extends BaseTestClass {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
-        WebElement result = loansPage.waitFor(6, RESULT);
+        WebElement result = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
         Assert.assertTrue(result.isDisplayed());
     }
 

@@ -1,6 +1,8 @@
 package uitest.m9;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +10,8 @@ import pages.Loans;
 
 import static factory.DriverFactory.newChromeDriver;
 import static pages.Loans.Period.ONE_MONTH;
+import static pages.Loans.loansIDSs.RESULT;
+import static wait.WaitingUtils.waitUntilVisible;
 
 public class PomAbstractionLevelFour {
 
@@ -24,7 +28,8 @@ public class PomAbstractionLevelFour {
         loansPage.goTo();
         loansPage.enterBorrowAmount("2000");
         loansPage.selectTimePeriod(ONE_MONTH);
-        loansPage.verifyResultMessage("You will pays us back 4000");
+        WebElement result = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
+        loansPage.verifyResultMessage(result,"You will pays us back 4000");
     }
 
     @AfterMethod
