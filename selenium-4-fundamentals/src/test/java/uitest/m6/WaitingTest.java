@@ -43,7 +43,7 @@ public class WaitingTest extends BaseTestClass {
         loansPage.goTo();
         loansPage.sendKeysBorrow("500");
 
-        WebElement result = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
+        WebElement result = waitUntilVisible(driver, By.id(RESULT.toString()), 6);
         Assert.assertTrue(result.isDisplayed());
     }
 

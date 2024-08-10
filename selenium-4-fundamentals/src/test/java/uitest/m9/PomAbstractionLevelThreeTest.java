@@ -29,7 +29,7 @@ public class PomAbstractionLevelThreeTest {
         loansPage.goTo();
         loansPage.enterBorrowAmount("2000");
         loansPage.selectTimePeriod(ONE_MONTH);
-        WebElement resultMessage = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
+        WebElement resultMessage = waitUntilVisible(driver, By.id(RESULT.toString()), 6);
         Assert.assertEquals(resultMessage.getText(), "You will pay us back 4000");
     }
 

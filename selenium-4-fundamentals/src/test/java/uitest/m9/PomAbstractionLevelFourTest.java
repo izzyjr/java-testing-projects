@@ -13,7 +13,7 @@ import static pages.Loans.Period.ONE_MONTH;
 import static pages.Loans.loansIDSs.RESULT;
 import static wait.WaitingUtils.waitUntilVisible;
 
-public class PomAbstractionLevelFour {
+public class PomAbstractionLevelFourTest {
 
     WebDriver driver;
 
@@ -28,8 +28,8 @@ public class PomAbstractionLevelFour {
         loansPage.goTo();
         loansPage.enterBorrowAmount("2000");
         loansPage.selectTimePeriod(ONE_MONTH);
-        WebElement result = waitUntilVisible(driver, By.id(RESULT.getId()), 6);
-        loansPage.verifyResultMessage(result,"You will pays us back 4000");
+        WebElement result = waitUntilVisible(driver, By.id(RESULT.toString()), 6);
+        loansPage.verifyResultMessage(result,"You will pay us back 4000");
     }
 
     @AfterMethod

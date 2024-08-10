@@ -77,8 +77,9 @@ public class Loans {
             this.id = id;
         }
 
-        public String getId() {
-            return this.id;
+        @Override
+        public String toString() {
+            return id;
         }
     }
 

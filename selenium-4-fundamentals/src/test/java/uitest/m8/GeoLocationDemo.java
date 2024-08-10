@@ -33,7 +33,7 @@ public class GeoLocationDemo extends BaseTestClass {
                 Optional.of(-0.09953871364387087), Optional.of(100)));
 
         homePage.goTo();
-        WebElement location = waitUntilVisible(driver, By.id(LOCATION.getId()),6);
+        WebElement location = waitUntilVisible(driver, By.id(LOCATION.toString()),6);
 
         tools.close();
     }
