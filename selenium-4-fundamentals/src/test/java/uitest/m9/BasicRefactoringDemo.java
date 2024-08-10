@@ -14,6 +14,7 @@ import static factory.DriverFactory.newChromeDriver;
 import static factory.DriverFactory.newEdgeDriver;
 import static factory.DriverFactory.newFirefoxDriver;
 import static helper.Pages.LOANS;
+import static wait.WaitingUtils.waitUntilVisible;
 
 public class BasicRefactoringDemo {
 
@@ -46,7 +47,7 @@ public class BasicRefactoringDemo {
         driver.get(LOANS);
         driver.findElement(By.id("borrow")).sendKeys("500");
 
-        var message = WaitingUtils.waitUntilVisible(driver, By.id("result"), 6);
+        var message = waitUntilVisible(driver, By.id("result"), 6);
         Assert.assertEquals(message.getText(), "You will pays us back 1000");
     }
 }
