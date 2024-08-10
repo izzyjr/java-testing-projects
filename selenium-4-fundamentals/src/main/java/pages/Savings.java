@@ -76,9 +76,9 @@ public class Savings {
         depositInput.sendKeys(amount);
     }
 
-    public void selectPeriodDropdown(String period) {
+    public void selectPeriodDropdown(Period period) {
         select = new Select(periodDropdown);
-        select.selectByValue(period);
+        select.selectByValue(period.toString());
     }
 
     public void selectPeriodDropdownByIndex(int index) {
@@ -96,5 +96,22 @@ public class Savings {
 
     public String getCell2Text() {
         return cell2.getText();
+    }
+
+    public enum Period {
+        SIX_MONTHS("6 months"),
+        ONE_YEAR("1 Year"),
+        TWO_YEARS("2 Years");
+
+        final String period;
+
+        Period(String period) {
+            this.period = period;
+        }
+
+        @Override
+        public String toString() {
+            return period;
+        }
     }
 }

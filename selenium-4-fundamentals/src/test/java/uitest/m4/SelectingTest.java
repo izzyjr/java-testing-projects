@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Savings;
 
+import static pages.Savings.Period.ONE_YEAR;
+import static pages.Savings.Period.SIX_MONTHS;
 import static wait.WaitingUtils.pause;
 
 public class SelectingTest extends BaseTestClass {
@@ -23,9 +25,9 @@ public class SelectingTest extends BaseTestClass {
 
         savingsPage.inputDeposit("100");
 
-        savingsPage.selectPeriodDropdown("6 months");
+        savingsPage.selectPeriodDropdown(SIX_MONTHS);
         pause();
-        savingsPage.selectPeriodDropdown("1 Year");
+        savingsPage.selectPeriodDropdown(ONE_YEAR);
         pause();
         savingsPage.selectPeriodDropdownByIndex(2);
 
