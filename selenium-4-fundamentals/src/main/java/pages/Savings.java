@@ -98,6 +98,10 @@ public class Savings {
         return cell2.getText();
     }
 
+    public boolean isResultDisplayed() {
+        return result.isDisplayed();
+    }
+
     public enum Period {
         SIX_MONTHS("6 months"),
         ONE_YEAR("1 Year"),
